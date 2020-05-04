@@ -53,3 +53,44 @@ int main(int argc, char* argv[])
     waitKey(0);
     return 0;
 }
+
+/*
+#include <opencv2/core.hpp>
+#include <opencv2/video/video.hpp>
+#include <opencv2/imgproc.hpp>
+#include <opencv2/highgui.hpp>
+#include <iostream>
+
+using namespace std;
+using namespace cv;
+
+float SNR(const Mat& f1, const Mat& f2) {
+	float ts=0.0, ms=0.0;
+	float t1, t2;
+	for(int i=0;i<f1.rows;i++)
+		for (int j = 0; j < f1.cols; j++)
+		{
+			ts += f2.at<uchar>(i, j);
+			ts += t1 * t1;
+			ms += pow(t1 - f1.at<uchar>(i, j),2.0);
+		}
+	return ts / ms;
+}
+
+int main(int argc, char* argv[])
+{
+	Mat ima1 = imread(argv[1]);
+	Mat im2;
+	if (ima1.data == nullptr)
+	{
+		cout << "Loi doc File!" << argv[1];
+		return 1;
+	}
+	GaussianBlur(ima1, im2, Size(3, 3), 1);
+	imshow("Anh vua doc", ima1);
+	imshow("Gaussian Blur", im2);
+	cout << SNR(ima1, im2);
+	waitKey(0);
+	return 0;
+}
+*/
